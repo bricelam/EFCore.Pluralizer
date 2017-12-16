@@ -1,0 +1,45 @@
+<Project>
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <EFCorePluralizerFile>$(IntermediateOutputPath)EFCorePluralizer$(DefaultLanguageSourceExtension)</EFCorePluralizerFile>
+  </PropertyGroup>
+  <Choose>
+    <When Condition="'$(Language)' == 'F#'">
+      <Choose>
+        <When Condition="'$(OutputType)' == 'Exe' OR '$(OutputType)' == 'WinExe'">
+          <PropertyGroup>
+            <CodeFragmentItemGroup>CompileBefore</CodeFragmentItemGroup>
+          </PropertyGroup>
+        </When>
+        <Otherwise>
+          <PropertyGroup>
+            <CodeFragmentItemGroup>CompileAfter</CodeFragmentItemGroup>
+          </PropertyGroup>
+        </Otherwise>
+      </Choose>
+    </When>
+    <Otherwise>
+      <PropertyGroup>
+        <CodeFragmentItemGroup>Compile</CodeFragmentItemGroup>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
+  <Target Name="AddEFCorePluralizer"
+          BeforeTargets="CoreCompile"
+          DependsOnTargets="PrepareForBuild"
+          Condition="'$(DesignTimeBuild)' != 'True'"
+          Inputs="$(MSBuildAllProjects)"
+          Outputs="$(EFCorePluralizerFile)">
+    <ItemGroup>
+      <EFCorePluralizerServices Include="Microsoft.EntityFrameworkCore.Design.DesignTimeServicesReferenceAttribute">
+        <_Parameter1>Bricelam.EntityFrameworkCore.Design.EFCorePluralizerServices, Bricelam.EntityFrameworkCore.Pluralizer</_Parameter1>
+      </EFCorePluralizerServices>
+    </ItemGroup>
+    <WriteCodeFragment AssemblyAttributes="@(EFCorePluralizerServices)"
+                       Language="$(Language)"
+                       OutputFile="$(EFCorePluralizerFile)">
+      <Output TaskParameter="OutputFile" ItemName="$(CodeFragmentItemGroup)" />
+      <Output TaskParameter="OutputFile" ItemName="FileWrites" />
+    </WriteCodeFragment>
+  </Target>
+</Project>

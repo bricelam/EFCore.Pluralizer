@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Bricelam.EntityFrameworkCore.Pluralizer</AssemblyName>
+    <RootNamespace>Bricelam.EntityFrameworkCore.Design</RootNamespace>
+    <Authors>Brice Lambson</Authors>
+    <Description>Adds design-time pluralization to EF Core</Description>
+    <PackageLicenseUrl>https://github.com/bricelam/EFCore.Pluralizer/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/bricelam/EFCore.Pluralizer</PackageProjectUrl>
+    <PackageTags>EFCore</PackageTags>
+    <RepositoryUrl>https://github.com/bricelam/EFCore.Pluralizer.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>© 2017 Brice Lambson. All rights reserved.</Copyright>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <LangVersion>latest</LangVersion>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <TimestampUrl>http://time.certum.pl</TimestampUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <WindowsSdkDir Condition=" '$(WindowsSdkDir)' == '' ">$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v10.0@InstallationFolder)</WindowsSdkDir>
+    <WindowsSDKVersion Condition=" '$(WindowsSDKVersion)' == '' ">$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v10.0@ProductVersion)\</WindowsSDKVersion>
+    <SignToolCommand>"$(WindowsSdkDir)bin\$(WindowsSDKVersion)x86\signtool.exe" sign /t $(TimestampUrl) /q</SignToolCommand>
+    <Version>1.0.0-beta1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="build\Bricelam.EntityFrameworkCore.Pluralizer.targets">
+      <Pack>True</Pack>
+      <PackagePath />
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.0-*" />
+  </ItemGroup>
+  
+  <Target Name="SignOutput" AfterTargets="Build" Condition="'$(SignOutput)' == 'True'">
+    <Exec Command="$(SignToolCommand) &quot;$(TargetPath)&quot;" />
+  </Target>
+
+</Project>
