@@ -25,14 +25,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="build\Bricelam.EntityFrameworkCore.Pluralizer.targets">
+    <None Include="build\**\*">
       <Pack>True</Pack>
-      <PackagePath />
+      <PackagePath>build</PackagePath>
     </None>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.0-*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.0-preview1-*" />
   </ItemGroup>
   
   <Target Name="SignOutput" AfterTargets="Build" Condition="'$(SignOutput)' == 'True'">
