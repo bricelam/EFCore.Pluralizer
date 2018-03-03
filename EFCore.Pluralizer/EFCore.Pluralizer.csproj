@@ -21,7 +21,7 @@
     <WindowsSdkDir Condition=" '$(WindowsSdkDir)' == '' ">$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v10.0@InstallationFolder)</WindowsSdkDir>
     <WindowsSDKVersion Condition=" '$(WindowsSDKVersion)' == '' ">$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Microsoft SDKs\Windows\v10.0@ProductVersion)\</WindowsSDKVersion>
     <SignToolCommand>"$(WindowsSdkDir)bin\$(WindowsSDKVersion)x86\signtool.exe" sign /t $(TimestampUrl) /q</SignToolCommand>
-    <Version>1.0.0-beta1</Version>
+    <Version>1.0.0-rc1</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.0-preview1-*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.0-preview1-final" />
   </ItemGroup>
 
   <Target Name="SignOutput" AfterTargets="Build" Condition="'$(SignOutput)' == 'True'">
