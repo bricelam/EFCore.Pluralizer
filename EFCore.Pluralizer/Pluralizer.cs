@@ -294,7 +294,7 @@ namespace Bricelam.EntityFrameworkCore.Design
             { "sinus", "sinus" },
             { "coitus", "coitus" },
             { "plexus", "plexus" },
-            { "status", "status" },
+            { "status", "statuses" },
             { "hiatus", "hiatus" },
             { "afreet", "afreeti" },
             { "afrit", "afriti" },
@@ -502,7 +502,7 @@ namespace Bricelam.EntityFrameworkCore.Design
                 return prefixWord + suffixWord;
 
             // handle irregular plurals, e.g. "ox" -> "oxen"
-            if (_irregularPluralsList.TryGetValue(suffixWord, out var plural))
+            if (_irregularPluralsList.TryGetValue(suffixWord.ToLowerInvariant(), out var plural))
                 return prefixWord + plural;
 
             // handle irregular inflections for common suffixes, e.g. "mouse" -> "mice"
