@@ -315,6 +315,7 @@ namespace Bricelam.EntityFrameworkCore.Design
         // singularize to "s"
         readonly IReadOnlyDictionary<string, string> _wordsEndingWithSeReverseList = new Dictionary<string, string>
         {
+            { "courses" , "course" },
             { "houses" , "house" },
             { "cases" , "case" },
             { "enterprises" , "enterprise" },
