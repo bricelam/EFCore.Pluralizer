@@ -473,13 +473,13 @@ namespace Bricelam.EntityFrameworkCore.Design
         /// <summary>Returns the plural form of the specified word.</summary>
         /// <returns>The plural form of the input parameter.</returns>
         /// <param name="word">The word to be made plural.</param>
-        public string Pluralize(string word)
+        public virtual string Pluralize(string word)
             => Capitalize(word, InternalPluralize);
 
         /// <summary>Returns the singular form of the specified word.</summary>
         /// <returns>The singular form of the input parameter.</returns>
         /// <param name="word">The word to be made singular.</param>
-        public string Singularize(string word)
+        public virtual string Singularize(string word)
             => Capitalize(word, InternalSingularize);
 
         string InternalPluralize(string word)
