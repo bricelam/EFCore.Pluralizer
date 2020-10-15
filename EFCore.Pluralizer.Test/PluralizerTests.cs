@@ -11,5 +11,12 @@ namespace Bricelam.EntityFrameworkCore.Design
         [Fact]
         public void Singularize_works()
             => Assert.Equal("Test", new Pluralizer().Singularize("Tests"));
+        [Fact]
+        public void Pluralize_status()
+            => Assert.Equal("Statuses", new Pluralizer().Pluralize("Status"));
+
+        [Fact]
+        public void Singularize_status()
+            => Assert.Equal("Status", new Pluralizer().Singularize("Statuses"));
     }
 }
