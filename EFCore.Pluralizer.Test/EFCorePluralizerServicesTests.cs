@@ -12,8 +12,9 @@ namespace Bricelam.EntityFrameworkCore.Design
             var serviceCollection = new ServiceCollection();
 
             new EFCorePluralizerServices().ConfigureDesignTimeServices(serviceCollection);
+            serviceCollection.AddEntityFrameworkDesignTimeServices();
 
-            var serviceProvider = serviceCollection.BuildServiceProvider();
+            using var serviceProvider = serviceCollection.BuildServiceProvider(validateScopes: true);
             Assert.IsType<Pluralizer>(serviceProvider.GetService<IPluralizer>());
         }
     }
