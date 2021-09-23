@@ -1,6 +1,5 @@
 var target = Argument<string>("target");
 var configuration = Argument<string>("configuration");
-var signOutput = HasArgument("signOutput");
 
 Task("Build")
     .Does(
@@ -13,11 +12,7 @@ Task("Build")
                     MSBuildSettings = new DotNetCoreMSBuildSettings
                     {
                         MaxCpuCount = 0,
-                        NoLogo = true,
-                        Properties =
-                        {
-                            { "SignOutput", new[] { signOutput.ToString() } }
-                        }
+                        NoLogo = true
                     }
                 }));
 
