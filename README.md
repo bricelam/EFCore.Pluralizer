@@ -1,5 +1,8 @@
 Bricelam.EntityFrameworkCore.Pluralizer
 =======================================
+
+![latest version](https://img.shields.io/nuget/v/Bricelam.EntityFrameworkCore.Pluralizer) ![downloads](https://img.shields.io/nuget/dt/Bricelam.EntityFrameworkCore.Pluralizer) ![license](https://img.shields.io/github/license/bricelam/EFCore.Pluralizer)
+
 This project is a working sample that adds design-time pluralization to Entity Framework Core.
 
 Usage
